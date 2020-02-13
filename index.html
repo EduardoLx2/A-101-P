@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="es">
+<meta charset="UTF-8">
+<head>
+	<title>INICIO</title>
+	<style>
+	ol{
+
+	}
+	.button {
+			  background-color: #3473E3;
+			  border: none;
+			  color: white;
+			  padding: 5px 20px;
+			  text-align: center;
+			  text-decoration: none;
+			  display: inline-block;
+			  font-size: 16px;
+			  margin: 4px 2px;
+			  cursor: pointer;
+			  border-radius: 4px;
+		  width: 30%;
+		}
+		.buscador{
+			margin-left: 50px;
+			margin-bottom: 20px;
+			padding-left: 5px;
+			color: black;
+		}
+	.button2{
+		background-color: #008CBA;
+		border-radius: 4px;
+		margin-right: 3px;
+		}
+		.button3{
+			border-radius: 4px;
+			background-color: #4CAF50;
+			margin-right: 3px;
+		}
+		.button4{
+			border-radius: 4px;
+			background-color: #f44336;
+		}
+		.button5{
+			background-color: #008CBA;
+		}
+		.buttonET{
+			margin-left: 200px;
+			margin-right: 20px;
+			background-color: #f44336;
+		}
+		.buttonC{
+			align: right;
+			background-color: #008CBA;
+		}
+	ul {
+		  list-style-type: none;
+		  margin: 0;
+		  padding: 0;
+		  overflow: hidden;
+		  background-color: #26011E;
+		}
+
+	li {
+		  float: left;
+		}
+
+	li a {
+	  	display: block;
+	  	color: white;
+	  	text-align: center;
+	  	padding: 20px 16px;
+	  	font-size: 150%;
+	  	text-decoration: none;
+		}
+
+	li a:hover:not(.active) {
+	  	background-color: #A0057D;
+		}
+
+	.tipo{	  	
+
+		display: block;
+	  	color: white;
+	  	text-align: center;
+	  	padding: 20px 16px;
+	  	font-size: 150%;
+	  	text-decoration: none;}
+
+	.active {
+	  	background-color: #000000;
+		}
+
+	* {
+		font-size: 100%;
+		font-family: "Arial";
+		color: black;
+		text-decoration: none;
+		}
+
+	h1 { font-size: 1.5em; }
+
+	body {
+		background-attachment: fixed;
+		margin: 0;
+		background-image: url("fondo-shopping.jpg");
+		}
+	.contacto{
+		font-size: 1.5em;
+		font-family: Poppins;
+		color: black;
+		text-decoration: none;
+	}
+	.producto{
+		font-size: 1.5em;
+		font-family: Poppins;
+		color: black;
+		text-decoration: none;
+	}
+	table {
+		margin-left: 50px;
+		background-color: grey;
+  	border-collapse: collapse;
+	}
+	#titulo th{
+		padding-top: 12px;
+  padding-bottom: 12px;
+  background-color: #A0057D;
+  color: white;
+	}
+	table, td, th {
+		text-align: center;
+  	border: 3px solid black;
+	  padding: 5px;
+	}
+	p.titulodash{ text-align: left;
+				font-family: arial;
+				font-size: 300%;
+				margin-left: 50px;
+				border-bottom: 3px solid black;
+				
+				padding-bottom: 10px}
+	p.area {	
+		background-color: white;
+		border: 2px solid red;
+  		border-radius: 5px;
+		text-align: center;
+		}
+	
+	.caja { float:left;margin-left:20px; }
+	.iconcrud{ float:left;margin-left:20px; margin-top: 25px}
+	.categoria {background-color: #1A921D; font-size: 70%;}
+	.precio{ font-size: 1.0em; color: red;font-family: Arial;}
+	.area {
+		font-size: 1.5em;
+		font-family: Poppins;
+		color: black;
+		text-decoration: none
+		background-color: #1A921D}
+	
+</style>
+<script type="text/javascript">
+
+	window.onload = function() {
+		document.getElementById('contenido').innerHTML =`
+	  		<br>
+			<div align="center">
+			    <img src="logo-shopping.png" width="500">
+				
+			</div>
+			<br>
+			<div align="center">
+			    <h1 style="color:black; font-size:40px">¿Qué es esto?</h1>
+				<h2 style="color:black">Una página en linea donde puedes comprar productos de calidad a un buen precio!</h2>
+				
+			</div>
+	  	`
+		var tipo = sessionStorage.getItem("tipo");
+		if(tipo == "admin"){	
+			  	document.getElementById('nav').innerHTML =`
+					<ul>
+					<li><a href="javascript:inicio()">Inicio</a></li>
+					<li><a href="javascript:dashboard()">Dashboard</a></li>
+					<li><a href="javascript:contacto()">Contáctanos</a></li>
+					<li style="float:right"><a class="active" href="javascript:cerrarSesion()">Cerrar Sesión</a></li>
+					<h style="float:right" class="tipo">Administrador</li>
+					</ul>
+			  	`
+		}else if(tipo == "cliente"){
+			  	document.getElementById('nav').innerHTML =`
+					<ul>
+					<li><a href="javascript:inicio()">Inicio</a></li>
+					<li><a href="javascript:productoC()">Catálogo</a></li>
+					<li><a href="javascript:contacto()">Contáctanos</a></li>
+					<li style="float:right"><a class="active" href="javascript:cerrarSesion()">Cerrar Sesión</a></li>
+					<h style="float:right" class="tipo">Comprador</li>
+					</ul>
+			  	`
+		}else{
+			  	document.getElementById('nav').innerHTML =`
+					<ul>
+					<li><a href="javascript:inicio()">Inicio</a></li>
+					<li><a href="javascript:contacto()">Contáctanos</a></li>
+					<li style="float:right"><a class="active" href="login.html">Iniciar Sesión</a></li>
+					<h style="float:right" class="tipo"></li>
+					</ul>
+			  	`			
+		}
+	};
+
+	function electrónica(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónica()">Electrónica</a></li>
+				<li><a href="javascript:ropa()">Ropa</a></li>
+				<li><a href="javascript:hogar()">Hogar</a></li>
+				<li><a href="javascript:entretenimiento()">Entretenimiento</a></li>
+			</ul>
+			
+			
+			<br>
+						
+			<div class="caja">
+			    <img src="imagenes/bocinas.jpg" width="200" height="200">
+				<h1><a class="producto">Bocinas</a></h1>
+				<h1><a class="precio">$MXN 150.00</a></h1>
+			</div>
+			
+			<div class="caja">
+				<img src="imagenes/camara.jpg" width="200" height="200">
+				<h1><a class="producto">Cámara</a></h1>
+				<h1><a class="precio">$MXN 1200.00</a></h1>
+			</div>
+			<div class="caja">
+				<img src="imagenes/laptop.jpg" width="200" height="200">
+				<h1><a class="producto">Laptop</a></h1>
+				<h1><a class="precio">$MXN 3500.00</a></h1>
+			</div>
+			<div class="caja">
+				<img src="imagenes/pantalla.jpg" width="200" height="200">
+				<h1><a class="producto">Pantalla</a></h1>
+				<h1><a class="precio">$MXN 2000.00</a></h1>
+			</div>
+			
+			<div class="caja">
+				<img src="imagenes/impresora.jpg" width="200" height="200">
+				<h1><a class="producto">Impresora</a></h1>
+				<h1><a class="precio">$MXN 1500.00</a></h1>
+			</div>
+	  	`
+	}
+
+	function ropa(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónica()">Electrónica</a></li>
+				<li><a href="javascript:ropa()">Ropa</a></li>
+				<li><a href="javascript:hogar()">Hogar</a></li>
+				<li><a href="javascript:entretenimiento()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="imagenes/ropa1.jpg" width="200" height="200">
+				<h1><a class="producto">Vestido</a></h1>
+				<h1><a class="precio">$MXN 150.00</a></h1>
+			</div>
+			
+	  	`
+	}
+
+	function hogar(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónica()">Electrónica</a></li>
+				<li><a href="javascript:ropa()">Ropa</a></li>
+				<li><a href="javascript:hogar()">Hogar</a></li>
+				<li><a href="javascript:entretenimiento()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="imagenes/comedor.jpg" width="200" height="200">
+				<h1><a class="producto">Comedor</a></h1>
+				<h1><a class="precio">$MXN 2800.00</a></h1>
+			</div>
+			
+			
+	  	`
+	}
+
+	function entretenimiento(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónica()">Electrónica</a></li>
+				<li><a href="javascript:ropa()">Ropa</a></li>
+				<li><a href="javascript:hogar()">Hogar</a></li>
+				<li><a href="javascript:entretenimiento()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="imagenes/balon.jpg" width="200" height="200">
+				<h1><a class="producto">Balón</a></h1>
+				<h1><a class="precio">$MXN 50.00</a></h1>
+			</div>
+			
+			
+	  	`
+	}
+	function electrónicaC(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónicaC()">Electrónica</a></li>
+				<li><a href="javascript:ropaC()">Ropa</a></li>
+				<li><a href="javascript:hogarC()">Hogar</a></li>
+				<li><a href="javascript:entretenimientoC()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="bocinas.jpg" width="200" height="200">
+				<h1><a class="producto">Bocinas</a></h1>
+				<h1><a class="precio">$MXN 150.00</a></h1>
+				<button class="button2">Comprar</button>
+			</div>
+			
+			
+	  	`
+	}
+
+	function ropaC(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónicaC()">Electrónica</a></li>
+				<li><a href="javascript:ropaC()">Ropa</a></li>
+				<li><a href="javascript:hogarC()">Hogar</a></li>
+				<li><a href="javascript:entretenimientoC()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="ropa1.jpg" width="200" height="200">
+				<h1><a class="producto">Vestido</a></h1>
+				<h1><a class="precio">$MXN 150.00</a></h1>
+				<button class="button2">Comprar</button>
+			</div>
+			
+			
+	  	`
+	}
+
+	function hogarC(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónicaC()">Electrónica</a></li>
+				<li><a href="javascript:ropaC()">Ropa</a></li>
+				<li><a href="javascript:hogarC()">Hogar</a></li>
+				<li><a href="javascript:entretenimientoC()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="comedor.jpg" width="200" height="200">
+				<h1><a class="producto">Comedor</a></h1>
+				<h1><a class="precio">$MXN 2800.00</a></h1>
+				<button class="button2">Comprar</button>
+			</div>
+			
+			
+	  	`
+	}
+
+	function entretenimientoC(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónicaC()">Electrónica</a></li>
+				<li><a href="javascript:ropaC()">Ropa</a></li>
+				<li><a href="javascript:hogarC()">Hogar</a></li>
+				<li><a href="javascript:entretenimientoC()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			<div class="caja">
+			    <img src="balon.jpg" width="200" height="200">
+				<h1><a class="producto">Balón</a></h1>
+				<h1><a class="precio">$MXN 50.00</a></h1>
+				<button class="button2">Comprar</button>
+			</div>
+			
+			
+	  	`
+	}
+
+	function producto(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónica()">Electrónica</a></li>
+				<li><a href="javascript:ropa()">Ropa</a></li>
+				<li><a href="javascript:hogar()">Hogar</a></li>
+				<li><a href="javascript:entretenimiento()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			
+			<div align="center">
+			    <img src="logo-shopping.png" width="500">
+			</div>
+	  	`
+	}	
+
+	function productoC(){
+	  	document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Categoría: </h>
+				<li><a href="javascript:electrónicaC()">Electrónica</a></li>
+				<li><a href="javascript:ropaC()">Ropa</a></li>
+				<li><a href="javascript:hogarC()">Hogar</a></li>
+				<li><a href="javascript:entretenimientoC()">Entretenimiento</a></li>
+			</ul>
+			<br>
+			
+			<div align="center">
+			    <img src="logo-shopping.png" width="500">
+			</div>
+	  	`
+	}	
+	function contacto(){
+	  	document.getElementById('contenido').innerHTML =`
+	  		<br>
+			<div align="center">
+			    <img src="fb.png" width="100" height="100">
+			    <h1><a href="https://www.facebook.com/FerZP25" class="contacto">Facebook</a></h1>
+				<img src="Twitter.png" width="100" height="100">
+			    <h1><a href="https://twitter.com/ZiricR25" class="contacto">Twitter</a></h1>
+			    <img src="Whats.png" width="100" height="100">
+			    <h1 class="contacto"> +52 1 961 168 4402</h1>
+			</div>
+	  	`
+	}
+	function inicio(){
+	  	document.getElementById('contenido').innerHTML =`
+	  		<br>
+			<div align="center">
+			    <img src="logo-shopping.png" width="500">
+			</div>
+			<br>
+			<div align="center">
+			    <h1 style="color:black; font-size:40px">¿Qué es esto?</h1>
+				<h2 style="color:black">Una página en linea donde puedes comprar productos de calidad a un buen precio!</h2>
+				
+			</div>
+	  	`
+	}
+	function dashboard(){
+		  document.getElementById('contenido').innerHTML =`
+		  <ul class="categoria">
+			  	<h style="float:left" class="tipo">Gestionar: </h>
+				<li><a href="javascript:dash_areas()">Áreas</a></li>
+				<li><a href="javascript:dash_clientes()">Clientes</a></li>
+				<li><a href="javascript:dash_productos()">Productos</a></li>
+			</ul>
+	  		<br>
+			<div align="center">
+			    <img src="logo-shopping.png" width="500">
+			</div>
+			
+	  	`
+	}
+
+	function dash_areas(){
+		  document.getElementById('contenido').innerHTML =`
+		  	<ul class="categoria">
+			  	<h style="float:left" class="tipo">Gestionar: </h>
+				<li><a href="javascript:dash_areas()">Áreas</a></li>
+				<li><a href="javascript:dash_clientes()">Clientes</a></li>
+				<li><a href="javascript:dash_productos()">Productos</a></li>
+			</ul>
+			<div>
+			<p class="titulodash">Áreas</p>
+			<input class="buscador" type="text" id="buscador" text-color="black" placeholder="Ingresa un nombre..."><button class="button5">Buscar</button><button class="buttonET">Eliminar todo</button><button class="buttonC">Crear Área</button>
+			<table id="titulo">
+				<tr>
+					<th>Id</th>
+					<th>Nombre</th>
+					<th>Descripción</th>
+					<th>Acción</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td>Electrónica</td>
+					<td>Artículos de cómputo.</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				
+			</table>
+			</div>
+			
+			
+	  	`
+	}
+	function dash_clientes(){
+		  document.getElementById('contenido').innerHTML =`
+		  <ul class="categoria">
+			  	<h style="float:left" class="tipo">Gestionar: </h>
+				<li><a href="javascript:dash_areas()">Áreas</a></li>
+				<li><a href="javascript:dash_clientes()">Clientes</a></li>
+				<li><a href="javascript:dash_productos()">Productos</a></li>
+			</ul>
+			<div>
+			<p class="titulodash">Clientes</p>
+			<input class="buscador" type="text" id="buscador" text-color="black" placeholder="Ingresa un nombre..."><button class="button5">Buscar</button><button class="buttonET">Eliminar todo</button><button class="buttonC">Crear cliente</button>
+			<table id="titulo">
+				<tr>
+					<th>Nombre</th>
+					<th>Acción</th>
+				</tr>
+				<tr>
+					<td>Cliente1</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+			</table>
+			</div>
+	  	`
+	}
+
+	function dash_productos(){
+		  document.getElementById('contenido').innerHTML =`
+		  <ul class="categoria">
+			  	<h style="float:left" class="tipo">Gestionar: </h>
+				<li><a href="javascript:dash_areas()">Áreas</a></li>
+				<li><a href="javascript:dash_clientes()">Clientes</a></li>
+				<li><a href="javascript:dash_productos()">Productos</a></li>
+			</ul>
+			<div>
+			<p class="titulodash">Productos</p>
+			<input class="buscador" type="text" id="buscador" text-color="black" placeholder="Ingresa un nombre..."><button class="button5">Buscar</button><button class="buttonET">Eliminar todo</button><button class="buttonC">Agregar producto</button>
+			<table id="titulo">
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Área</th>
+					<th>Acción</th>
+				</tr>
+				<tr>
+					<td>Bocinas</td>
+					<td>$MXN 150.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Cámara</td>
+					<td>$MXN 1200.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Laptop</td>
+					<td>$MXN 3500.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Pantalla</td>
+					<td>$MXN 2000.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Impresora</td>
+					<td>$MXN 1500.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Vestido</td>
+					<td>$MXN 150.00</td>
+					<td>Ropa</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Camisa</td>
+					<td>$MXN 160.00</td>
+					<td>Ropa</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Short</td>
+					<td>$MXN 80.00</td>
+					<td>Ropa</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Deportiva</td>
+					<td>$MXN 300.00</td>
+					<td>Ropa</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Chamarra</td>
+					<td>$MXN 230.00</td>
+					<td>Ropa</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Comedor</td>
+					<td>$MXN 2800.00</td>
+					<td>Hogar</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Vajilla</td>
+					<td>$MXN 150.00</td>
+					<td>Hogar</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Sillas</td>
+					<td>$MXN 170.00</td>
+					<td>Hogar</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Ollas</td>
+					<td>$MXN 170.00</td>
+					<td>Hogar</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Lámpara</td>
+					<td>$MXN 350.00</td>
+					<td>Hogar</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Balón</td>
+					<td>$MXN 350.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Ajedrez</td>
+					<td>$MXN 40.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Inflable</td>
+					<td>$MXN 15000.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>PSP</td>
+					<td>$MXN 1700.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Dominó</td>
+					<td>$MXN 40.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+			</table>
+			</div>
+	  	`
+	}
+	function dashboardC(){
+		  document.getElementById('contenido').innerHTML =`
+		  <ul class="categoria">
+			  	<h style="float:left" class="tipo">Gestionar: </h>
+				<li><a href="javascript:dash_productosC()">Productos</a></li>
+			</ul>
+	  		<br>
+			<div align="center">
+			    <img src="logo-shopping.png" width="500">
+			</div>
+			
+	  	`
+	}
+	function dash_productosC(){
+		  document.getElementById('contenido').innerHTML =`
+		  <ul class="categoria">
+			  	<h style="float:left" class="tipo">Gestionar: </h>
+				<li><a href="javascript:dash_productosC()">Productos</a></li>
+			</ul>
+			<div>
+			<p class="titulodash">Productos</p>
+			<input class="buscador" type="text" id="buscador" text-color="black" placeholder="Ingresa un nombre..."><button class="button5">Buscar</button><button class="buttonET">Eliminar todo</button><button class="buttonC">Agregar producto</button>
+			<table id="titulo">
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Área</th>
+					<th>Acción</th>
+				</tr>
+				<tr>
+					<td>Bocinas</td>
+					<td>$MXN 150.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Cámara</td>
+					<td>$MXN 1200.00</td>
+					<td>Electrónica</td>
+					<td><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Laptop</td>
+					<td>$MXN 3500.00</td>
+					<td>Electrónica</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Pantalla</td>
+					<td>$MXN 2000.00</td>
+					<td>Electrónica</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Impresora</td>
+					<td>$MXN 1500.00</td>
+					<td>Electrónica</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Vestido</td>
+					<td>$MXN 150.00</td>
+					<td>Ropa</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Camisa</td>
+					<td>$MXN 160.00</td>
+					<td>Ropa</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Short</td>
+					<td>$MXN 80.00</td>
+					<td>Ropa</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Deportiva</td>
+					<td>$MXN 300.00</td>
+					<td>Ropa</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Chamarra</td>
+					<td>$MXN 230.00</td>
+					<td>Ropa</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Comedor</td>
+					<td>$MXN 2800.00</td>
+					<td>Hogar</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Vajilla</td>
+					<td>$MXN 150.00</td>
+					<td>Hogar</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Sillas</td>
+					<td>$MXN 170.00</td>
+					<td>Hogar</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Ollas</td>
+					<td>$MXN 170.00</td>
+					<td>Hogar</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Lámpara</td>
+					<td>$MXN 350.00</td>
+					<td>Hogar</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Balón</td>
+					<td>$MXN 350.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Ajedrez</td>
+					<td>$MXN 40.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Inflable</td>
+					<td>$MXN 15000.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>PSP</td>
+					<td>$MXN 1700.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+				<tr>
+					<td>Dominó</td>
+					<td>$MXN 40.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button2">Leer</button><button class="button3">Editar</button><button class="button4">Eliminar</button></td>
+				</tr>
+			</table>
+			</div>
+	  	`
+	}
+	function carrito(){
+		  document.getElementById('contenido').innerHTML =`
+		  
+			<div>
+			<p class="titulodash">Artículos por comprar</p>
+			<input class="buscador" type="text" id="buscador" text-color="black" placeholder="Ingresa un nombre..."><button class="button5">Buscar</button><button class="buttonET">Eliminar todo</button>
+			<table id="titulo">
+				<tr>
+					<th>Nombre</th>
+					<th>Precio</th>
+					<th>Área</th>
+					<th>Acción</th>
+				</tr>
+				<tr>
+					<td>Dominó</td>
+					<td>$MXN 40.00</td>
+					<td>Entretenimiento</td>
+					<td><button class="button2">Ver</button><button class="button4">Eliminar</button></td>
+				</tr>
+				
+			</table>
+			</div>
+	  	`
+	}
+
+	function cerrarSesion(){
+		if (confirm("¿Desea cerrar sesión?")) {
+    		sessionStorage.clear();
+	   		window.location.href = 'index.html';
+		}else{}
+	}
+</script>
+</head>
+<body>
+<div id="nav">
+
+
+</div>
+
+<div id="contenido">
+
+</div>
+
+</body>
+</html>
